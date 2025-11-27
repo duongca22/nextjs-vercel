@@ -134,12 +134,16 @@
 }
 
 .opt-btn {
-    padding: 6px 12px;
-    border: 1px solid #aaa;
-    background: white;
-    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .opt-btn.active {
     background: black;
@@ -182,4 +186,145 @@
 .opt-btn.active {
     border-color: #000;
     box-shadow: 0 0 0 2px #000 inset;
+}
+
+/* reponsive */
+@media (max-width: 1024px) {
+    .fp-wrap {
+        padding: 30px 16px;
+    }
+
+    .fp-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .fp-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .fp-imgbox {
+        height: 220px;
+    }
+
+    .fp-name {
+        font-size: 15px;
+    }
+
+    .fp-price {
+        font-size: 16px;
+    }
+
+    .fp-btn {
+        font-size: 14px;
+        padding: 9px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .fp-wrap {
+        padding: 24px 12px;
+    }
+
+    .fp-title {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+
+    .fp-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .fp-imgbox {
+        height: 200px;
+    }
+
+    .fp-card {
+        padding-bottom: 12px;
+    }
+
+    .fp-info {
+        padding: 12px 12px 0;
+    }
+
+    .fp-name {
+        font-size: 14px;
+    }
+
+    .fp-price {
+        font-size: 15px;
+    }
+
+    .fp-btn {
+        width: 92%;
+        font-size: 14px;
+        padding: 8px 0;
+    }
+
+    .popup-box {
+        width: 90%;
+        max-width: 360px;
+        padding: 16px;
+    }
+
+    .popup-section {
+        margin-top: 12px;
+    }
+
+    .confirm-btn {
+        padding: 10px;
+        font-size: 14px;
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fp-wrap {
+        padding: 20px 10px;
+    }
+
+    .fp-title {
+        font-size: 18px;
+        letter-spacing: 0.5px;
+    }
+
+    .fp-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .fp-imgbox {
+        height: 190px;
+    }
+
+    .fp-name {
+        font-size: 14px;
+    }
+
+    .fp-price {
+        font-size: 14px;
+    }
+
+    .fp-btn {
+        width: 100%;
+        font-size: 13px;
+        padding: 8px 0;
+    }
+
+    .qty-box {
+        gap: 8px;
+    }
+
+    .qty-box button {
+        width: 26px;
+        height: 26px;
+        font-size: 15px;
+    }
+
+    .opt-btn {
+        width: 24px;
+        height: 24px;
+    }
 }

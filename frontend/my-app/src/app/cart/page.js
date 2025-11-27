@@ -3,6 +3,25 @@
 import { useEffect, useState } from "react";
 import "./cart.css";
 
+const mergeCartItems = (items) => {
+    const map = {};
+
+    items.forEach((item) => {
+        const key = `${item.id}-${item.color || ""}-${item.size || ""}`;
+
+        if (!map[key]) {
+            map[key] = {
+                ...item,
+                qty: item.qty || 1, // nếu chưa có qty mặc đính 1
+            };
+        } else {
+            map[key].qty += item.qty || 1;
+        }
+    });
+
+    return Object.values(map);
+};
+
 export default function GioHang() {
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -15,27 +34,45 @@ export default function GioHang() {
             return;
         }
 
-        // Load giỏ hàng từ localStorage
-        const data = JSON.parse(localStorage.getItem("cart")) || [];
-        setCart(data);
+        const raw = JSON.parse(localStorage.getItem("cart")) || [];
+        const merged = mergeCartItems(raw);
+        setCart(merged);
+        localStorage.setItem("cart", JSON.stringify(merged));
         setLoading(false);
     }, []);
 
-    const updateQty = (id, qty) => {
+    // Cập nhật số lượng theo id + color + size
+    const updateQty = (id, color, size, qty) => {
         const newCart = cart.map(item =>
-            item.id === id ? { ...item, qty: Math.max(1, qty) } : item
+            item.id === id &&
+                item.color === color &&
+                item.size === size
+                ? { ...item, qty: Math.max(1, qty) } // ko bé hơn 1
+                : item
         );
+
         setCart(newCart);
         localStorage.setItem("cart", JSON.stringify(newCart));
+        window.dispatchEvent(new Event("cart-updated"));
     };
 
-    const removeItem = (id) => {
-        const newCart = cart.filter(item => item.id !== id);
+    // Xóa 1 dòng theo id + color sĩze
+    const removeItem = (id, color, size) => {
+        const newCart = cart.filter(
+            item =>
+                !(
+                    item.id === id &&
+                    item.color === color &&
+                    item.size === size
+                )
+        );
+
         setCart(newCart);
         localStorage.setItem("cart", JSON.stringify(newCart));
+        window.dispatchEvent(new Event("cart-updated"));
     };
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const total = cart.reduce((sum, item) => sum + item.price * (item.qty || 1), 0);
 
     if (loading) return <div className="cart-container">Đang tải...</div>;
 
@@ -72,7 +109,6 @@ export default function GioHang() {
                                 {item.name}
                             </td>
 
-                            {/* Màu sắc */}
                             <td>
                                 <span
                                     className="color-dot"
@@ -81,21 +117,51 @@ export default function GioHang() {
                                 ></span>
                             </td>
 
-                            {/* Size */}
                             <td>{item.size || "—"}</td>
 
                             <td>{item.price.toLocaleString()}₫</td>
 
                             <td>
                                 <div className="qty-box">
-                                    <button onClick={() => updateQty(item.id, item.qty - 1)}>-</button>
+                                    <button
+                                        onClick={() =>
+                                            updateQty(
+                                                item.id,
+                                                item.color,
+                                                item.size,
+                                                item.qty - 1
+                                            )
+                                        }
+                                    >
+                                        -
+                                    </button>
+
                                     <input
                                         type="number"
                                         value={item.qty}
                                         min="1"
-                                        onChange={e => updateQty(item.id, Number(e.target.value))}
+                                        onChange={e =>
+                                            updateQty(
+                                                item.id,
+                                                item.color,
+                                                item.size,
+                                                Number(e.target.value)
+                                            )
+                                        }
                                     />
-                                    <button onClick={() => updateQty(item.id, item.qty + 1)}>+</button>
+
+                                    <button
+                                        onClick={() =>
+                                            updateQty(
+                                                item.id,
+                                                item.color,
+                                                item.size,
+                                                item.qty + 1
+                                            )
+                                        }
+                                    >
+                                        +
+                                    </button>
                                 </div>
                             </td>
 
@@ -104,8 +170,12 @@ export default function GioHang() {
                             <td>
                                 <button
                                     className="remove"
-                                    onClick={() => removeItem(item.id)}
-                                >✕</button>
+                                    onClick={() =>
+                                        removeItem(item.id, item.color, item.size)
+                                    }
+                                >
+                                    ✕
+                                </button>
                             </td>
                         </tr>
                     ))}
@@ -118,11 +188,10 @@ export default function GioHang() {
 
             <button
                 className="cart-checkout"
-                onClick={() => window.location.href = "/thanh-toan"}
+                onClick={() => (window.location.href = "/thanh-toan")}
             >
                 Thanh toán
             </button>
-
         </div>
     );
 }

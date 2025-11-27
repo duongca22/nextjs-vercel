@@ -61,3 +61,72 @@
 .succ-btn.sec {
     background: #333;
 }
+
+/*  */
+@media (max-width: 768px) {
+    .succ-wrap {
+        max-width: 100%;
+        margin: 40px auto;
+        padding: 16px;
+    }
+
+    .succ-box {
+        padding: 20px;
+        margin-top: 24px;
+        border-radius: 10px;
+    }
+
+    .succ-meta p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .succ-item {
+        font-size: 15px;
+        padding: 10px 0;
+    }
+
+    .succ-total {
+        font-size: 17px;
+    }
+
+    .succ-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .succ-btn {
+        width: 100%;
+        text-align: center;
+        padding: 11px 0;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .succ-wrap {
+        margin: 30px auto;
+        padding: 12px;
+    }
+
+    .succ-box {
+        padding: 16px;
+    }
+
+    .succ-meta p {
+        font-size: 14px;
+    }
+
+    .succ-item {
+        font-size: 14px;
+    }
+
+    .succ-total {
+        font-size: 16px;
+    }
+
+    .succ-btn {
+        padding: 10px 0;
+        font-size: 14px;
+    }
+}

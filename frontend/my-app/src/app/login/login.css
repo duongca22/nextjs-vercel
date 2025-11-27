@@ -68,3 +68,66 @@
     font-size: 14px;
     margin-top: 8px;
 }
+
+/* reponsive */
+@media (max-width: 768px) {
+    .login-wrap {
+        max-width: 100%;
+        margin: 30px auto;
+        padding: 12px;
+    }
+
+    .login-title {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .login-form {
+        gap: 10px;
+    }
+
+    .login-form label {
+        font-size: 13px;
+    }
+
+    .login-form input {
+        padding: 9px 12px;
+        font-size: 14px;
+    }
+
+    .login-btn {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-wrap {
+        padding: 10px;
+        margin: 20px auto;
+    }
+
+    .login-title {
+        font-size: 18px;
+    }
+
+    .login-form label {
+        font-size: 12px;
+    }
+
+    .login-form input {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .login-btn {
+        font-size: 14px;
+        padding: 9px 10px;
+    }
+
+    .login-error,
+    .login-success {
+        font-size: 13px;
+        padding: 7px 9px;
+    }
+}

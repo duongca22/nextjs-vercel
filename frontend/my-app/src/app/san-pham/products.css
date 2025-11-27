@@ -164,3 +164,166 @@
     background: white;
     cursor: pointer;
 }
+
+/* reponsive */
+@media (max-width: 1024px) {
+    .pl-layout {
+        grid-template-columns: 220px 1fr;
+        gap: 20px;
+        padding: 0 16px;
+    }
+
+    .pl-wrap {
+        padding: 30px;
+    }
+
+    .pl-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .pl-imgbox {
+        height: 240px;
+    }
+
+    .pl-name {
+        font-size: 16px;
+    }
+
+    .pl-price {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pl-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    .pl-sidebar {
+        padding: 18px;
+    }
+
+    .pl-sidebar h3 {
+        font-size: 16px;
+    }
+
+    .pl-sidebar li {
+        font-size: 14px;
+        padding: 8px 0;
+    }
+
+    .pl-wrap {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .pl-content-area {
+        gap: 16px;
+    }
+
+    .pl-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .pl-imgbox {
+        height: 210px;
+    }
+
+    .pl-info {
+        padding: 14px 14px 12px;
+    }
+
+    .pl-name {
+        font-size: 15px;
+    }
+
+    .pl-price {
+        font-size: 14px;
+    }
+
+    .pl-sort {
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .pl-sort select {
+        padding: 7px 10px;
+        font-size: 14px;
+    }
+
+    .pl-pagination {
+        margin-top: 24px;
+        gap: 8px;
+    }
+
+    .pl-pagination button {
+        width: 34px;
+        height: 34px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pl-layout {
+        margin: 16px auto;
+        padding: 0 10px;
+    }
+
+    .pl-sidebar {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .pl-sidebar h3 {
+        font-size: 15px;
+    }
+
+    .pl-sidebar li {
+        font-size: 13px;
+    }
+
+    .pl-wrap {
+        padding: 16px;
+    }
+
+    .pl-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .pl-imgbox {
+        height: 200px;
+    }
+
+    .pl-name {
+        font-size: 14px;
+    }
+
+    .pl-price {
+        font-size: 14px;
+    }
+
+    .pl-sort {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pl-sort select {
+        width: 100%;
+    }
+
+    .pl-pagination {
+        gap: 6px;
+    }
+
+    .pl-pagination button {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+}

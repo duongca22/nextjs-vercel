@@ -11,11 +11,20 @@ export default function NavBar() {
     const [showMenu, setShowMenu] = useState(false);
     const [q, setQ] = useState('');
     const [user, setUser] = useState(null);
-
+    const [cartCount, setCartCount] = useState(0);
     useEffect(() => {
         const savedUser = localStorage.getItem('user');
         if (savedUser) setUser(JSON.parse(savedUser));
+
+        updateCartCount();
+        window.addEventListener('cart-updated', updateCartCount);
+
+        return () => window.removeEventListener('cart-updated', updateCartCount);
     }, []);
+    const updateCartCount = () => {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        setCartCount(cart.length);
+    };
 
     const goCart = (e) => {
         e.preventDefault();
@@ -30,7 +39,7 @@ export default function NavBar() {
         e.preventDefault();
         const keyword = q.trim();
         if (!keyword) return;
-        router.push(`/products?search=${encodeURIComponent(keyword)}`);
+        router.push(`/san-pham?search=${encodeURIComponent(keyword)}`);
         setShowMenu(false);
     };
 
@@ -47,7 +56,8 @@ export default function NavBar() {
             <div className="nav-left">
                 <Link href="/">Trang chủ</Link>
                 <Link href="/san-pham">Sản phẩm</Link>
-                <Link href="/contact">Liên hệ</Link>
+                <span>Liên hệ</span>
+
             </div>
 
             <form className="search" onSubmit={onSearch}>
@@ -67,6 +77,9 @@ export default function NavBar() {
             <div className="nav-right">
                 <button className="nav-cart-btn" onClick={goCart} aria-label="Giỏ hàng">
                     <FiShoppingBag className="cart-icon" size={20} />
+                    {cartCount > 0 && (
+                        <span className="cart-badge">{cartCount}</span>
+                    )}
                 </button>
 
                 <div className="user-wrapper">

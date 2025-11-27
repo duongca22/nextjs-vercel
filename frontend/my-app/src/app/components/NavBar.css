@@ -164,3 +164,116 @@
 .search-btn:hover {
     background: #eee;
 }
+
+@media (max-width: 1024px) {
+    .nav {
+        padding: 10px 40px;
+    }
+
+    .nav-left {
+        gap: 30px;
+    }
+
+    .search {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px 16px;
+    }
+
+    .nav-left {
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .nav-left a {
+        font-size: 14px;
+    }
+
+    .search {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        order: 2;
+    }
+
+    .search-input {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    .search-btn {
+        padding: 8px 10px;
+    }
+
+    .nav-right {
+        order: 3;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 4px;
+    }
+
+    .nav-cart-btn,
+    .user-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .taikhoan {
+        right: 0;
+        left: auto;
+        min-width: 150px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .nav {
+        padding: 8px 12px;
+    }
+
+    .nav-left {
+        gap: 12px;
+        font-size: 13px;
+    }
+
+    .search-input {
+        font-size: 13px;
+        padding: 7px 8px;
+    }
+
+    .search-btn {
+        padding: 7px 8px;
+    }
+
+    .nav-cart-btn,
+    .user-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .cart-badge {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+    }
+
+    .taikhoan a,
+    .taikhoan button {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    .username {
+        font-size: 13px;
+    }
+}
