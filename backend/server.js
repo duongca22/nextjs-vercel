@@ -7,9 +7,11 @@ import { addOrder, getOrdersByUser } from './data/orders.js';
 
 const app = express();
 const JWT_SECRET = 'ECOM_MOCK_SECRET';
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+
+app.use(cors({ origin: true, credentials: true }));
+
 app.use(express.json());
 
 // In-memory (reset khi restart)
