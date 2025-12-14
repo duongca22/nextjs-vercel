@@ -94,7 +94,7 @@
     }
 }
 
-/* Responsive Mobile dưới 768px 
+/* Responsive Mobile dưới 768px */
 @media (max-width: 768px) {
 
     .acc-wrap h1 {
@@ -113,6 +113,7 @@
     .acc-box p {
         font-size: 14px;
     }
+
     .acc-table {
         display: block;
         width: 100%;
