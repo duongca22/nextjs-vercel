@@ -17,7 +17,8 @@ export default function FeaturedProducts() {
     useEffect(() => {
         const run = async () => {
             try {
-                const res = await fetch('http://localhost:4000/api/products?featured=1');
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products?featured=1`);
+
                 const data = await res.json();
                 setItems(data);
             } catch (e) {
