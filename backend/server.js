@@ -10,7 +10,33 @@ const JWT_SECRET = 'ECOM_MOCK_SECRET';
 const PORT = process.env.PORT || 4000;
 
 
-app.use(cors({ origin: true, credentials: true }));
+app.set('trust proxy', 1);
+
+const allowList = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://nextjs-vercel-opal.vercel.app'
+];
+
+app.use(
+    cors({
+        origin: (origin, cb) => {
+            if (!origin) return cb(null, true);
+            if (allowList.includes(origin)) return cb(null, true);
+            try {
+                const hostname = new URL(origin).hostname;
+                if (hostname.endsWith('.vercel.app')) return cb(null, true);
+            } catch (e) { }
+            return cb(new Error('Not allowed by CORS'));
+        },
+        credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+    })
+);
+
+app.options('*', cors());
+
 
 app.use(express.json());
 
